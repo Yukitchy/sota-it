@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>そうたくんの はじめてのIT辞典 ＆ パソコン買い物メモ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --sea:#0B6FA4;          /* 主役＝海 */
+  --sun:#DD7A2E;          /* 補助＝日差し */
+  --ink:#14262F;
+  --sub:#546A75;
+  --line:#CFD8DD;
+  --bg:#EDF1F3;           /* フラットな1色 */
+  --card:#FFFFFF;
+  --deco:rgba(255,255,255,.55);
+  --ok:#1E7A4B;
+  --warn:#B3401E;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif;
+  line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased;
+}
+body,p,li,td,th,div,span,b,small,summary,button,a,h1,h2,h3,h4{
+  word-break:auto-phrase;line-break:strict;overflow-wrap:anywhere;
+}
+h1,h2,h3,h4,.eyebrow,.pill,.btn,.note{text-wrap:balance}
+p,li{text-wrap:pretty}
+h1,h2,h3{font-family:"M PLUS Rounded 1c",-apple-system,"Hiragino Sans",sans-serif;line-height:1.35;letter-spacing:-.01em;margin:0}
+a{color:var(--sea)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+
+/* ── ヒーロー ── */
+.hero{background:var(--sea);color:#fff;padding:48px 0 40px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;pointer-events:none;top:-70px;right:-80px;
+  width:280px;height:280px;background:rgba(255,255,255,.10);border-radius:0 0 0 100%}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.16em;opacity:.85;margin:0 0 10px}
+.hero h1{font-size:31px;font-weight:800;color:#fff}
+.hero p{margin:14px 0 0;font-size:15px;color:rgba(255,255,255,.9);max-width:34em}
+
+/* ── セクション ── */
+section{padding:44px 0 8px;position:relative;overflow:hidden}
+section::before{content:"";position:absolute;pointer-events:none;z-index:0}
+section:nth-of-type(4n+1)::before{top:10px;right:-60px;width:200px;height:200px;background:var(--deco);border-radius:0 0 0 100%}
+section:nth-of-type(4n+2)::before{top:40px;right:-6px;width:170px;height:130px;
+  background-image:radial-gradient(var(--deco) 2.5px,transparent 2.5px);background-size:18px 18px}
+section:nth-of-type(4n+3)::before{top:30px;right:-70px;width:190px;height:190px;border-radius:50%;border:14px solid var(--deco)}
+section:nth-of-type(4n+4)::before{top:34px;right:-40px;width:140px;height:24px;border-radius:999px;background:var(--deco);
+  box-shadow:0 50px 0 -4px var(--deco),0 100px 0 8px var(--deco)}
+.sec-n{font-size:13px;font-weight:800;letter-spacing:.16em;color:var(--sun);margin:0 0 6px}
+h2{font-size:25px;font-weight:800;margin:0 0 6px}
+.lead{color:var(--sub);font-size:15px;margin:8px 0 26px;max-width:38em}
+
+/* ── 区切りは下線1本と余白だけ ── */
+.item{padding:18px 0;border-top:1px solid var(--line)}
+.item:first-of-type{border-top:none;padding-top:4px}
+.item h3{font-size:18px;font-weight:800}
+.item .en{font-size:13px;color:var(--sub);font-weight:700;letter-spacing:.04em;margin-top:2px}
+.item p{margin:8px 0 0;font-size:15px}
+.quote{margin:10px 0 0;padding:10px 14px;background:#fff;border-left:4px solid var(--sun);
+  font-size:14px;color:var(--sub);border-radius:0 8px 8px 0}
+.quote b{color:var(--ink)}
+
+/* ── 番号つきリスト ── */
+ol.steps{list-style:none;padding:0;margin:0;counter-reset:s}
+ol.steps>li{counter-increment:s;padding:18px 0 18px 46px;border-top:1px solid var(--line);position:relative}
+ol.steps>li:first-child{border-top:none}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:20px;width:30px;height:30px;
+  background:var(--sea);color:#fff;border-radius:50%;display:grid;place-items:center;
+  font-weight:800;font-size:15px;font-family:"M PLUS Rounded 1c",sans-serif}
+ol.steps h3{font-size:18px;font-weight:800}
+ol.steps p{margin:6px 0 0;font-size:15px}
+
+/* ── 言い方カード ── */
+.say{background:#fff;border-radius:12px;padding:14px 16px;margin:10px 0 0;font-size:15px}
+.say::before{content:"こう言う";display:block;font-size:13px;font-weight:800;letter-spacing:.1em;color:var(--sun);margin-bottom:4px}
+
+/* ── チェックリスト ── */
+.check{list-style:none;padding:0;margin:0}
+.check li{padding:14px 0 14px 34px;border-top:1px solid var(--line);position:relative;font-size:15px}
+.check li:first-child{border-top:none}
+.check li::before{content:"";position:absolute;left:0;top:21px;width:19px;height:19px;
+  border:2.5px solid var(--sea);border-radius:5px}
+.check li>b:first-child{display:block;font-size:17px;font-weight:800;margin-bottom:2px;
+  font-family:"M PLUS Rounded 1c",sans-serif}
+.check li.no::before{border-color:var(--warn)}
+
+/* ── 表 ── */
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:6px}
+table{border-collapse:collapse;width:100%;min-width:420px;font-size:15px;background:#fff;border-radius:10px;overflow:hidden}
+th,td{padding:11px 13px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#E3EAEE;font-weight:800;font-size:14px;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td b{color:var(--sea)}
+
+/* ── 注意ボックス ── */
+.alert{background:#fff;border-left:5px solid var(--warn);border-radius:0 10px 10px 0;padding:16px 18px;margin:22px 0 0}
+.alert h3{font-size:18px;font-weight:800;color:var(--warn)}
+.alert p{margin:8px 0 0;font-size:15px}
+
+/* ── コピペ用 ── */
+.copy{background:#14262F;color:#E8EFF2;border-radius:12px;padding:16px 18px;margin:14px 0 0}
+.copy p{margin:0;font-size:15px;line-height:1.8}
+.btn{margin-top:12px;display:inline-block;background:var(--sun);color:#fff;border:none;
+  font:inherit;font-weight:800;font-size:15px;padding:11px 22px;border-radius:999px;cursor:pointer;
+  box-shadow:0 8px 20px rgba(221,122,46,.32);transition:transform .12s var(--ease)}
+.btn:active{transform:scale(.97)}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+
+.shops{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px;padding:0;list-style:none}
+.shops a{display:inline-block;background:#fff;border-radius:999px;padding:9px 17px;
+  font-size:15px;font-weight:700;text-decoration:none;color:var(--sea)}
+
+footer{background:var(--sea);color:rgba(255,255,255,.92);margin-top:52px;padding:30px 0}
+footer p{margin:0;font-size:14px}
+@media(max-width:520px){
+  .hero h1{font-size:26px}
+  h2{font-size:22px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">2026.08.12 レッスンのまとめ</p>
+    <h1>そうたくんの<br>はじめてのIT辞典<br>＆ パソコン買い物メモ</h1>
+    <p>今日つまずいたところは、ぜんぶ「言葉を知らなかっただけ」でした。この1枚を読んでから、明日の秋葉原に来てください。</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="sec-n">TODAY</p>
+    <h2>今日の30分でわかったこと</h2>
+    <p class="lead">やりたいのは「地図のピンを押したら、そのビーチの波と潮の情報が出るアプリ」。ここまで進みました。</p>
+
+    <div class="item">
+      <h3>できるようになったこと</h3>
+      <p>AIが書いたHTMLを JSBin に貼って、スマホの画面に実際に表示させられた。さらに「ホーム画面に追加」で、アプリみたいに開けるところまでいきました。<b>もう作れています。</b></p>
+    </div>
+    <div class="item">
+      <h3>詰まっていた本当の理由</h3>
+      <p>「AIに言ったら、できあがったページがポンって出てくる」と思っていたのに、出てきたのは黒い画面（コード）だった。これは故障ではなくて、<b>コードと、完成した画面は別物</b>だから。その間をつなぐ言葉を知らなかっただけです。</p>
+      <div class="quote">そうたくん「<b>それを具現化させたものを、ポンって貼る仕組みは持ってない？って言われて…</b>」</div>
+    </div>
+    <div class="item">
+      <h3>いちばん大事な結論</h3>
+      <p>ユウキさんに聞かなくても、AIが全部答えてくれます。足りないのは知識ではなく<b>単語</b>。「これ」「あれ」「そこ」を、下の辞典の言葉に置きかえるだけで、AIの答えが一気に当たるようになります。英単語を覚えるのと同じです。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-n">DICTIONARY 1</p>
+    <h2>辞典①　AIと話すときの言葉</h2>
+    <p class="lead">今日の会話に実際に出てきた「これ・あれ」に、名前をつけます。</p>
+
+    <div class="item">
+      <h3>コード</h3><p class="en">code</p>
+      <p>プログラムの文章そのもの。AIのチャットに出てくる<b>黒い枠のやつ</b>がこれ。人間が読むためではなく、機械に読ませるための文字です。</p>
+      <div class="quote">×「この黒いやつ」→ ○「<b>このコード</b>」</div>
+    </div>
+    <div class="item">
+      <h3>HTML</h3><p class="en">エイチティーエムエル</p>
+      <p>Webページの設計図。コードの一種で、「ここに地図」「ここに文字」と書いてある紙。<b>設計図であって、家そのものではない</b>のがポイント。</p>
+    </div>
+    <div class="item">
+      <h3>プレビュー／レンダリング</h3><p class="en">preview / rendering</p>
+      <p>設計図（HTML）から、実際の見た目を組み立てて表示すること。そうたくんが言っていた<b>「具現化させる」の正式な言い方</b>がこれ。</p>
+      <div class="quote">×「これを具現化させたい」→ ○「<b>このHTMLをプレビューして見せて</b>」</div>
+    </div>
+    <div class="item">
+      <h3>Canvas（Gemini）／ Artifact（Claude）</h3><p class="en">キャンバス／アーティファクト</p>
+      <p>チャットの中で、コードを実際の画面として表示してくれる機能。<b>これを知らないと一生コードだけ見せられます。</b></p>
+      <div class="quote">○「<b>Canvas機能を使って、このコードを画面として表示して</b>」</div>
+    </div>
+    <div class="item">
+      <h3>API ／ APIキー</h3><p class="en">エーピーアイ</p>
+      <p><b>API</b>＝よその会社のデータを分けてもらう窓口。波や潮のデータはここからもらいます。<b>APIキー</b>＝その窓口で見せる自分専用の会員証。</p>
+    </div>
+    <div class="item">
+      <h3>ブラウザ ／ アプリ内ブラウザ</h3><p class="en">browser</p>
+      <p>Webを見るためのアプリ（Chrome、Safari）。GeminiやLINEの中で開くページは<b>アプリ内ブラウザ</b>といって、閉じると消えてしまいます。ちゃんと残したいときは「外部ブラウザで開く」。今日、右上の「…」から Chrome で開き直したのがこれです。</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="alert">
+    <h3>⚠️ APIキーだけは、絶対に人に見せない</h3>
+    <p>APIキーは<b>クレジットカードの番号と同じ</b>だと思ってください。ネットに公開したページのコードの中に貼ったままにすると、他人に拾われて勝手に使われ、<b>その料金があなたに請求されます。</b></p>
+    <p>これから GitHub にコードを載せるので、ここは本当に注意。作業に入る前に、AIにこう聞いてください →「<b>APIキーを公開ページに載せずに使う方法を教えて</b>」。もしすでにどこかに貼ってしまっていたら、そのキーを<b>削除して作り直せば大丈夫</b>です（無料でできます）。</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="sec-n">DICTIONARY 2</p>
+    <h2>辞典②　ネットに公開するときの言葉</h2>
+    <p class="lead">「作ったページのURLを送りたい」を実現するための言葉です。</p>
+
+    <div class="item">
+      <h3>URL</h3><p class="en">ユーアールエル</p>
+      <p>ネット上の<b>住所</b>。ユウキさんが送ってくるリンクはこれ。押すとその住所にある家（ページ）が開きます。</p>
+    </div>
+    <div class="item">
+      <h3>ドメイン</h3><p class="en">domain</p>
+      <p>住所のうち「〇〇.com」の部分＝<b>土地代</b>。本来はお金を払って買うもの（.comで年1000円くらい〜、超人気のものは数億円）。</p>
+    </div>
+    <div class="item">
+      <h3>JSBin</h3><p class="en">ジェイエスビン</p>
+      <p>今日使った、コードを貼るとその場で表示してくれるサイト。<b>他人の家に間借りしている仮住まい</b>の状態です。便利だけど、自分の住所ではありません。</p>
+    </div>
+    <div class="item">
+      <h3>GitHub</h3><p class="en">ギットハブ</p>
+      <p>プログラマがコードを保管する場所。<b>ゲームのセーブデータの倉庫</b>だと思ってください。無料。これから先ずっと使うので、避けて通れません。</p>
+    </div>
+    <div class="item">
+      <h3>GitHub Pages</h3><p class="en">ギットハブ ペ ージズ</p>
+      <p>GitHubのおまけ機能。<b>無料で自分のURLがもらえて、作ったページを世界に公開できる</b>。今日のゴールはここ。土地代タダで自分の住所が持てます。</p>
+    </div>
+    <div class="item">
+      <h3>ホーム画面に追加</h3><p class="en">PWA</p>
+      <p>Webページを、アプリのようにホーム画面のアイコンから開けるようにする機能。<b>今日もう成功しています。</b>次はウィジェット（ホーム画面に情報を直接出す枠）も相談できます。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-n">NEXT</p>
+    <h2>次にやる3ステップ</h2>
+    <p class="lead">今日の続き。パソコンが無くてもスマホでできます。</p>
+    <ol class="steps">
+      <li>
+        <h3>GitHubのアカウントを作る</h3>
+        <p>ユーザー名がそのままURLの一部になります（<b>github.com/えらんだ名前</b>）。あとから変えづらいので、変な名前にしないこと。</p>
+      </li>
+      <li>
+        <h3>GitHub Pages を有効にする</h3>
+        <p>手順が文字だらけで分からなかったら、そのまま言えばOK →「<b>文字の説明だと分かりにくいので、スクリーンショット画像で1ステップずつ説明して</b>」</p>
+      </li>
+      <li>
+        <h3>自分のURLで波アプリを開く</h3>
+        <p>そこまで行けば、あとは「もっとこうしたい」を言うだけ。ここからが本番で、ここからが面白いところです。</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-n">HOW TO ASK</p>
+    <h2>AIへの頼み方 5つ</h2>
+    <p class="lead">レッスン中にユウキさんが言っていたことを、そのまま使える形にしました。</p>
+
+    <div class="item">
+      <h3>1. 「分からない」を、どう分からないかまで言う</h3>
+      <p>黙って困っていても伝わりません。分からない種類を伝えると、AIは見せ方を変えてくれます。</p>
+      <div class="say">文字ばっかりで分かりません。図か画像で説明してください。</div>
+    </div>
+    <div class="item">
+      <h3>2. 自分のレベルを先に宣言する</h3>
+      <p>AIはこちらの知識量を知りません。低く言っても恥ずかしくないし、そのほうが早いです。</p>
+      <div class="say">私はIT系の知識がゼロで、スマホしか持っていません。専門用語には毎回かんたんな説明をつけてください。</div>
+    </div>
+    <div class="item">
+      <h3>3. 似たサービスを先に見せてもらう</h3>
+      <p>ゼロから考えるより、あるものを見て「これのいいとこ取り」を指定するほうが速い。</p>
+      <div class="say">同じような既存サービスを5つ挙げて。それぞれの良い点と足りない点も教えて。</div>
+    </div>
+    <div class="item">
+      <h3>4. 案を5つ出させて、審査員になる</h3>
+      <p>1個ずつ直させると時間がかかります。並べて選ぶほうが圧倒的に速い。</p>
+      <div class="say">デザイン案を5パターン出して。1枚のHTMLにまとめて、ボタンで切り替えられるようにして。</div>
+    </div>
+    <div class="item">
+      <h3>5. 「全部やって」と言う</h3>
+      <p>説明だけで止まっていたら、続きを頼めます。遠慮する相手ではありません。</p>
+      <div class="say">説明はいいので、できるところは全部やってください。私がやる必要がある操作だけ、順番に指示してください。</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="sec-n">TOMORROW</p>
+    <h2>明日のパソコン買い物メモ</h2>
+    <p class="lead">予算4万円。秋葉原。ここから先は、店で迷わないための実用ページです。</p>
+
+    <div class="item">
+      <h3>まず結論：中古のWindowsノート</h3>
+      <p>4万円だと <b>MacBookは買えません</b>（中古でもだいたい7万円〜）。そして新品の4万円パソコンは、性能が低すぎて後悔します。<b>いちばん賢いのは、企業が使っていた中古のWindowsノート。</b>同じ値段で性能が2〜3倍いいものが買えます。</p>
+    </div>
+    <div class="item">
+      <h3>Windowsを選ぶ理由（Macとの違い）</h3>
+      <p>Windowsは<b>あとからネジを開けて中身を強くできる</b>機種があります。最初は安いのを買って、物足りなくなったらメモリを足す、という買い方ができる。Macはそれをさせない作りなので、足りなくなったら買い替えです。</p>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <p class="sec-n" style="margin-top:26px">CHECK LIST</p>
+  <h2>店で見る5つだけ</h2>
+  <p class="lead">値札にこの言葉が並んでいます。上から順に大事。</p>
+
+  <ul class="check">
+    <li><b>メモリ 8GB以上（16GBならベスト）</b>
+      メモリ＝<b>作業机の広さ</b>。狭いと同時にいろいろ開けず、すぐ固まります。4GBは論外。4万円なら8GBが現実的なので、<b>「この機種、あとからメモリを16GBに増やせますか？」と店員さんに聞く</b>のが正解。</li>
+    <li><b>CPU：Core i5 / Ryzen 5 以上、かつ「第8世代」以降</b>
+      CPU＝<b>頭の回転の速さ</b>。「Core i5-8250U」のように、i5のあとの数字の頭が<b>8以上</b>ならOK。7以前はWindows 11が入らず、危なくて使えません。ここは妥協しないこと。</li>
+    <li><b>ストレージ：SSD 256GB以上</b>
+      ストレージ＝<b>物置の広さ</b>。<b>HDDと書いてあるものは買わない</b>（起動がとても遅い）。必ずSSD。</li>
+    <li><b>Windows 11 が入っている</b>
+      Windows 10はサポートが終わっているので、11であることを確認。</li>
+    <li><b>ACアダプタ（充電器）が付いている／バッテリーの状態</b>
+      中古の落とし穴。充電器が別売りだと数千円かかります。「<b>バッテリーはどれくらい持ちますか</b>」も必ず聞く。</li>
+    <li class="no"><b>いらないもの：Office、大画面、薄さ、見た目</b>
+      Officeは無料のGoogleドキュメントで足ります。画面は13〜14インチが持ち運びやすい。そのぶんの予算はメモリに回してください。</li>
+  </ul>
+
+  <div class="scroll-x">
+    <table>
+      <tr><th>値札のことば</th><th>意味</th><th>4万円での目安</th></tr>
+      <tr><td>メモリ / RAM</td><td>作業机の広さ</td><td><b>8GB</b>（16GBなら当たり）</td></tr>
+      <tr><td>CPU</td><td>頭の回転</td><td><b>Core i5 第8世代〜</b></td></tr>
+      <tr><td>SSD / ストレージ</td><td>物置の広さ</td><td><b>256GB〜</b></td></tr>
+      <tr><td>OS</td><td>基本ソフト</td><td><b>Windows 11</b></td></tr>
+      <tr><td>液晶 / インチ</td><td>画面の大きさ</td><td>13〜14インチ</td></tr>
+    </table>
+  </div>
+
+  <p class="lead" style="margin-top:26px">秋葉原の中古パソコン店（押すと地図が開きます）</p>
+  <ul class="shops">
+    <li><a href="https://www.google.com/maps/search/%E3%81%98%E3%82%83%E3%82%93%E3%81%B1%E3%82%89+%E7%A7%8B%E8%91%89%E5%8E%9F" target="_blank" rel="noopener">じゃんぱら</a></li>
+    <li><a href="https://www.google.com/maps/search/%E3%82%BD%E3%83%95%E3%83%9E%E3%83%83%E3%83%97+%E7%A7%8B%E8%91%89%E5%8E%9F" target="_blank" rel="noopener">ソフマップ</a></li>
+    <li><a href="https://www.google.com/maps/search/%E3%83%91%E3%82%BD%E3%82%B3%E3%83%B3%E5%B7%A5%E6%88%BF+%E7%A7%8B%E8%91%89%E5%8E%9F" target="_blank" rel="noopener">パソコン工房</a></li>
+    <li><a href="https://www.google.com/maps/search/%E3%83%84%E3%82%AF%E3%83%A2+%E7%A7%8B%E8%91%89%E5%8E%9F" target="_blank" rel="noopener">ツクモ</a></li>
+    <li><a href="https://www.google.com/maps/search/%E3%82%A4%E3%82%AA%E3%82%B7%E3%82%B9+%E7%A7%8B%E8%91%89%E5%8E%9F" target="_blank" rel="noopener">イオシス</a></li>
+  </ul>
+
+  <div class="alert">
+    <h3>買う前に、お母さんに相談する</h3>
+    <p>お金のことなので、ここはユウキさんからの伝言です。予算と、何に使うか（AIでアプリを作る練習）を先に話しておくこと。</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <p class="sec-n">COPY &amp; PASTE</p>
+    <h2>今夜、AIに投げる文</h2>
+    <p class="lead">下のボタンでコピーして、GeminiかClaudeにそのまま貼ってください。明日の店で強くなります。</p>
+
+    <div class="copy">
+      <p id="p1">私は高校生で、パソコンを初めて買います。予算は4万円、秋葉原の中古ショップで買う予定です。用途は、AIと一緒にWebアプリ（サーフィンの波・潮情報アプリ）を作ることです。おすすめの機種を3つ、値段の目安つきで挙げてください。あわせて、店員さんに何を聞けばいいかも教えてください。私はIT用語をほとんど知らないので、専門用語には毎回かんたんな説明をつけてください。</p>
+    </div>
+    <button class="btn" data-t="p1">この文をコピー</button>
+
+    <div class="copy" style="margin-top:26px">
+      <p id="p2">GitHubのアカウントを作って、GitHub Pagesで自分のURLを無料で公開したいです。スマホだけで進めます。文字の説明だと分かりにくいので、スクリーンショット画像で1ステップずつ説明してください。あと、APIキーを公開ページに載せずに使う方法も教えてください。</p>
+    </div>
+    <button class="btn" data-t="p2">この文をコピー</button>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>2026.08.12 の英語レッスンより／ユウキ　—　分からなくなったら、まずAIに「分かりません」と言うこと。</p>
+  </div>
+</footer>
+
+<script src="devbar.js"></script>
+<script>
+document.querySelectorAll('.btn').forEach(function(b){
+  b.addEventListener('click', function(){
+    var t = document.getElementById(b.dataset.t).textContent;
+    navigator.clipboard.writeText(t).then(function(){
+      var o = b.textContent; b.textContent = 'コピーしました';
+      setTimeout(function(){ b.textContent = o; }, 1600);
+    });
+  });
+});
+</script>
+</body>
+</html>
